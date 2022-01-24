@@ -3,6 +3,7 @@ import axios from 'axios'
 
 const apiBlog = axios.create({
   baseURL: 'http://127.0.0.1:8000/api/v1/blog/',
+  // baseURL: 'http://142.93.98.156:1337/api/v1/blog/',
   auth: {
     username: 'erischon',
     password: 'erischon2021'
