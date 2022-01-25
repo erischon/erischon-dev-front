@@ -10,14 +10,15 @@
     --clr-primary: #0065FC;
     --clr-secondary: #DEEBFF;
 
-    --fs-h1: 3rem;
-    --fs-h2: 2.25rem;
+    --fs-h1: 2rem;
+    --fs-h2: 1.75rem;
     --fs-h3: 1.25rem;
     --fs-body: 1rem;
 }
 
 body {
     font-family: var(--ff-primary);
+    line-height: 1.35rem;
 }
 
 h1,
@@ -33,8 +34,7 @@ h1 {
 
 #container {
     width: 100%;
-    height: 100vh;
-    background: red;
+    background: #fff;
     display: grid;
     grid-template-columns: 0.5fr 1fr;
     grid-template-rows: 80px auto 80px;
@@ -50,14 +50,13 @@ header {
 main {
     grid-column: 1 / 3;
     grid-row: 2 / 3;
-    background: pink;
+    background: #fff;
     display: flex;
     flex-direction: column;
-    width: 80%;
     margin: 0 auto;
-    padding: 0 1em;
-
 }
+
+
   
 footer {
     grid-column: 1 / 3;
@@ -72,6 +71,35 @@ footer {
 .postInfos,
 .postTitle,
 .postImage,
-.postBody {
-    margin: 1em 0;
+.postBody,
+.postFooter {
+    margin: 0.5em 0.5em;
+}
+
+.postImage {
+    margin: 0 auto;
+}
+
+.postImage img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    opacity: 0.8;
+}
+
+/* Media Queries */
+
+@media screen and (min-width: 750px) {
+    main {
+        width: 80%;
+    }
+
+    .postInfos,
+    .postTitle,
+    .postImage,
+    .postBody,
+    .postFooter {
+        margin: 0.5em 0;
+    }    
+
 }
