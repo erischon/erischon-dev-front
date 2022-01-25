@@ -37,13 +37,13 @@ h1 {
     background: #fff;
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-    grid-template-rows: 80px auto 80px;
+    grid-template-rows: 60px auto 80px;
 }
   
 header {
     grid-column: 1 / 3;
     grid-row: 1 / 2;
-    background: blue;
+    background: #fff;
     display: flex;
 }
   
@@ -57,8 +57,6 @@ main {
     max-width: 800px;
 }
 
-
-  
 footer {
     grid-column: 1 / 3;
     grid-row: 3 / 4;
@@ -77,15 +75,28 @@ footer {
     margin: 0.5em 0.5em;
 }
 
-.postImage {
-    margin: 0 auto;
-}
-
 .postImage img {
     display: block;
     max-width: 100%;
     height: auto;
     opacity: 0.8;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+.header h3 {
+    display: inline;
+}
+
+li {
+    display: inline;
 }
 
 /* Media Queries */
