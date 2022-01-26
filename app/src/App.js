@@ -37,6 +37,7 @@ class App extends Component {
         {this.state.blog.map(item => (
           <div key={item.id}>
             <h1>{item.title}</h1>
+            <img src={ item.image } alt={ item.title } />
             <div dangerouslySetInnerHTML={{ __html: item.body }} />
           </div>
         ))}
