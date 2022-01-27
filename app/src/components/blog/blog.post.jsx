@@ -3,9 +3,9 @@ import "./blog.styles.css"
 
 export const Post = (props) => (
     <main id="post">
-    { console.log(props.item)}
+    { console.log(props.item.title) }
         <div className="postTitle">
-            <h1>{ props.item.title }</h1>
+            <h1>Un titre qui claque</h1>
         </div>
         <div className="postImage">
             <img src="img-horizon-test-2.jpg" alt="Image de test" />
