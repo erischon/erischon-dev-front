@@ -1,30 +1,46 @@
-import React from "react";
-import "./blog.styles.css"
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-export const Post = (props) => (
-    <main id="post">
-    { console.log(props.item.title) }
-        <div className="postTitle">
-            <h1>Un titre qui claque</h1>
-        </div>
-        <div className="postImage">
-            <img src="img-horizon-test-2.jpg" alt="Image de test" />
-        </div>
-        <div className="postBody">
-            <h2>Body</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur ab commodi itaque assumenda natus placeat perferendis, fugiat incidunt quis cupiditate quia. Nulla illo adipisci accusamus incidunt aut possimus aspernatur veritatis.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur ab commodi itaque assumenda natus placeat perferendis, fugiat incidunt quis cupiditate quia. Nulla illo adipisci accusamus incidunt aut possimus aspernatur veritatis.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur ab commodi itaque assumenda natus placeat perferendis, fugiat incidunt quis cupiditate quia. Nulla illo adipisci accusamus incidunt aut possimus aspernatur veritatis.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur ab commodi itaque assumenda natus placeat perferendis, fugiat incidunt quis cupiditate quia. Nulla illo adipisci accusamus incidunt aut possimus aspernatur veritatis.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur ab commodi itaque assumenda natus placeat perferendis, fugiat incidunt quis cupiditate quia. Nulla illo adipisci accusamus incidunt aut possimus aspernatur veritatis.</p>
-        </div>
-        <div className="postInfos">
-            <h3>Infos</h3>
-        </div>
-        <div className="postFooter">
-            <h2>Footer</h2>
-        </div>
-    </main>
-)
+const BlogDetail = (props) => {
+    const [blog, setBlog] = useState({});
 
-// <div dangerouslySetInnerHTML={{ __html: this.props.item.body }} />
+    useEffect(() => {
+        const slug = props.match.params.id;
+
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/blog/${slug}`);
+                setBlog(res.data);
+            }
+            catch (err) {
+
+            }
+        };
+
+        fetchData();
+    }, [props.match.params.id]);
+
+    const createBlog = () => {
+        return {__html: blog.content}
+    };
+
+    const capitalizeFirstLetter = (word) => {
+        if (word)
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        return '';
+    };
+
+    return (
+        <div className='container mt-3'>
+            <h1 className='display-2'>{blog.title}</h1>
+            <h2 className='text-muted mt-3'>Category: {capitalizeFirstLetter(blog.category)}</h2>
+            <h4>{blog.month} {blog.day}</h4>
+            <div className='mt-5 mb-5' dangerouslySetInnerHTML={createBlog()} />
+            <hr />
+            <p className='lead mb-5'><Link to='/blog' className='font-weight-bold'>Back to Blogs</Link></p>
+        </div>
+    );
+};
+
+export default BlogDetail;
