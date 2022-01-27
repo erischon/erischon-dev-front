@@ -13,15 +13,15 @@ const apiBlog = axios.create({
 })
 
 class App extends Component {
-  state = {
-    blog: []
+  constructor() {
+    super();
+
+    this.state = {
+      blog: []
+    }
   }
 
   componentDidMount() {
-    this.getBlog()
-  }
-
-  getBlog() {
     apiBlog
     .get('/')
     .then(res => {
@@ -32,13 +32,14 @@ class App extends Component {
     })
   }
 
+
+
   render() {
-
-    const posts = this.state.blog 
-
     return (
       <div>
-        <Post item = { posts[0] } />
+        {this.state.blog.map(item => (
+          <Post item = { item }/>
+        ))}
       </div>
     );
   }
